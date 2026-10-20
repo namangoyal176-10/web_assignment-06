@@ -66,6 +66,14 @@ app.get('/api/health', (req, res) => {
       ? 'connecting'
       : 'disconnected';
 
+  const rawUri = process.env.MONGO_URI || process.env.MONGODB_URI || '';
+  let dbHost = 'none';
+  if (rawUri.includes('@')) {
+    dbHost = rawUri.split('@')[1].split('/')[0].split('?')[0];
+  } else if (rawUri) {
+    dbHost = 'configured';
+  }
+
   res.status(200).json({
     status: 'ok',
     service: 'fee-collection-system-api',
@@ -73,6 +81,7 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString(),
     uptimeSeconds: Math.floor(process.uptime()),
     database: dbStatus,
+    databaseHost: dbHost,
   });
 });
 
