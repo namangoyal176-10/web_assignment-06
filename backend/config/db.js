@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    const connUri = process.env.MONGO_URI || process.env.MONGODB_URI;
-    if (!connUri) {
-      console.warn('⚠️ MONGO_URI is not set in environment variables. Database operations will fail.');
-      return;
+    let connUri = process.env.MONGO_URI || process.env.MONGODB_URI;
+    if (!connUri || connUri.includes('xxxxx')) {
+      connUri = 'mongodb+srv://namangoyal176_db_user:namangoyal1234@cluster0.t6koohi.mongodb.net/fee_management?retryWrites=true&w=majority';
     }
     const conn = await mongoose.connect(connUri, {
       serverSelectionTimeoutMS: 5000,

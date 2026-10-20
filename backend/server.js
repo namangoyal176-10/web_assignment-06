@@ -66,7 +66,10 @@ app.get('/api/health', (req, res) => {
       ? 'connecting'
       : 'disconnected';
 
-  const rawUri = process.env.MONGO_URI || process.env.MONGODB_URI || '';
+  let rawUri = process.env.MONGO_URI || process.env.MONGODB_URI || '';
+  if (!rawUri || rawUri.includes('xxxxx')) {
+    rawUri = 'mongodb+srv://namangoyal176_db_user:namangoyal1234@cluster0.t6koohi.mongodb.net/fee_management?retryWrites=true&w=majority';
+  }
   let dbHost = 'none';
   if (rawUri.includes('@')) {
     dbHost = rawUri.split('@')[1].split('/')[0].split('?')[0];
