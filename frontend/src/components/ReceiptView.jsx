@@ -33,7 +33,6 @@ export const ReceiptView = ({ payment }) => {
 
   return (
     <div className="receipt-wrapper">
-      {/* Print & Back Controls (Hidden in Print mode) */}
       <div className="receipt-actions no-print">
         <button onClick={() => navigate(-1)} className="btn btn-secondary">
           <ArrowLeft size={16} /> Back
@@ -43,9 +42,7 @@ export const ReceiptView = ({ payment }) => {
         </button>
       </div>
 
-      {/* Printable Receipt Sheet */}
       <div className="receipt-paper" id="printable-receipt">
-        {/* Receipt Header */}
         <div className="receipt-header">
           <div className="institution-info">
             <h1 className="inst-title">APEX INSTITUTE OF ENGINEERING & TECHNOLOGY</h1>
@@ -64,7 +61,6 @@ export const ReceiptView = ({ payment }) => {
 
         <div className="receipt-divider"></div>
 
-        {/* Student & Payment Metadata Grid */}
         <div className="receipt-meta-grid">
           <div className="meta-card">
             <h3 className="meta-card-title">Student Information</h3>
@@ -123,7 +119,6 @@ export const ReceiptView = ({ payment }) => {
           </div>
         </div>
 
-        {/* Fee Heads Breakdown */}
         <div className="receipt-heads-section">
           <h3 className="section-title">Fee Particulars</h3>
           <table className="fee-table">
@@ -164,7 +159,6 @@ export const ReceiptView = ({ payment }) => {
           </table>
         </div>
 
-        {/* Amount Paid Callout */}
         <div className="payment-total-box">
           <div className="total-left">
             <div className="paid-status-pill">
@@ -184,7 +178,6 @@ export const ReceiptView = ({ payment }) => {
           </div>
         </div>
 
-        {/* Signatures & Seal */}
         <div className="receipt-footer">
           <div className="footer-left">
             <p className="notice-text">

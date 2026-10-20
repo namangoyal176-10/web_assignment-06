@@ -31,7 +31,6 @@ export const Login = () => {
     }
   };
 
-  // Quick fill helper for presentation / testing
   const fillCredentials = (userType) => {
     if (userType === 'admin') {
       setEmail('admin@college.edu');
@@ -102,7 +101,6 @@ export const Login = () => {
           </button>
         </form>
 
-        {/* Presentation helper chips */}
         <div className="demo-credentials-box">
           <div className="demo-header">
             <Sparkles size={14} />

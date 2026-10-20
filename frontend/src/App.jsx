@@ -4,7 +4,6 @@ import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
-// Pages
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
@@ -24,12 +23,10 @@ function App() {
 
         <main className="main-content">
           <Routes>
-            {/* Public Routes */}
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
-            {/* Student Protected Routes */}
             <Route
               path="/my-fees"
               element={
@@ -39,7 +36,6 @@ function App() {
               }
             />
 
-            {/* Shared Protected Route for Receipts (Students view own, Admin views any) */}
             <Route
               path="/receipts/:receiptNo"
               element={
@@ -49,7 +45,6 @@ function App() {
               }
             />
 
-            {/* Admin / Accountant Protected Routes */}
             <Route
               path="/admin/dashboard"
               element={
@@ -99,7 +94,6 @@ function App() {
               }
             />
 
-            {/* 404 Catch-All */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

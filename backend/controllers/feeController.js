@@ -1,8 +1,5 @@
 const FeeStructure = require('../models/FeeStructure');
 
-// @desc    Get all fee structures
-// @route   GET /api/fees
-// @access  Private (Student & Admin)
 exports.getAllFeeStructures = async (req, res) => {
   try {
     const fees = await FeeStructure.find().sort({ createdAt: -1 });
@@ -16,9 +13,6 @@ exports.getAllFeeStructures = async (req, res) => {
   }
 };
 
-// @desc    Get single fee structure by ID
-// @route   GET /api/fees/:id
-// @access  Private
 exports.getFeeStructureById = async (req, res) => {
   try {
     const fee = await FeeStructure.findById(req.params.id);
@@ -31,9 +25,6 @@ exports.getFeeStructureById = async (req, res) => {
   }
 };
 
-// @desc    Create a new fee structure
-// @route   POST /api/fees
-// @access  Private (Admin only)
 exports.createFeeStructure = async (req, res) => {
   try {
     const { course, academicYear, feeHeads, dueDate, description } = req.body;
@@ -46,7 +37,6 @@ exports.createFeeStructure = async (req, res) => {
     }
 
     const heads = Array.isArray(feeHeads) ? feeHeads : [];
-    // Calculate total from heads or fallback to passed total
     const computedTotal = heads.reduce(
       (sum, item) => sum + (Number(item.amount) || 0),
       0
@@ -79,14 +69,10 @@ exports.createFeeStructure = async (req, res) => {
       data: fee,
     });
   } catch (error) {
-    console.error('Error creating fee structure:', error);
     res.status(500).json({ success: false, message: error.message || 'Server error' });
   }
 };
 
-// @desc    Update a fee structure
-// @route   PUT /api/fees/:id
-// @access  Private (Admin only)
 exports.updateFeeStructure = async (req, res) => {
   try {
     const { course, academicYear, feeHeads, dueDate, description, totalAmount } = req.body;
@@ -125,9 +111,6 @@ exports.updateFeeStructure = async (req, res) => {
   }
 };
 
-// @desc    Delete a fee structure
-// @route   DELETE /api/fees/:id
-// @access  Private (Admin only)
 exports.deleteFeeStructure = async (req, res) => {
   try {
     const fee = await FeeStructure.findById(req.params.id);

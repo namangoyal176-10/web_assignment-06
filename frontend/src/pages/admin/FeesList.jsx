@@ -119,7 +119,6 @@ export const FeesList = () => {
                 <p className="card-description">{fee.description}</p>
               )}
 
-              {/* Fee Heads summary */}
               <div className="fee-heads-list">
                 {fee.feeHeads?.map((head, idx) => (
                   <div key={idx} className="head-item">

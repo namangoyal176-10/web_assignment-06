@@ -1,8 +1,4 @@
-// Centralized API client for communicating with backend
-// Uses VITE_API_URL if configured, otherwise defaults to local backend at http://localhost:5000
-
 const rawBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-// Ensure no trailing slash
 export const API_BASE_URL = rawBaseUrl.replace(/\/+$/, '');
 
 export async function apiRequest(endpoint, options = {}) {
@@ -17,9 +13,7 @@ export async function apiRequest(endpoint, options = {}) {
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  // Normalize endpoint: ensure starts with /
   const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
-  // Ensure we don't accidentally duplicate /api if already present
   const url = `${API_BASE_URL}${path}`;
 
   try {
@@ -44,7 +38,6 @@ export async function apiRequest(endpoint, options = {}) {
   }
 }
 
-// Convenience methods
 export const api = {
   get: (url) => apiRequest(url, { method: 'GET' }),
   post: (url, body) => apiRequest(url, { method: 'POST', body: JSON.stringify(body) }),

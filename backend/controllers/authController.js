@@ -2,7 +2,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-// Helper to generate JWT token
 const generateToken = (id, role) => {
   return jwt.sign(
     { id, role },
@@ -11,9 +10,6 @@ const generateToken = (id, role) => {
   );
 };
 
-// @desc    Register a new user (Student or Admin)
-// @route   POST /api/auth/register
-// @access  Public
 exports.register = async (req, res) => {
   try {
     const { name, email, password, role, rollNumber, course, batch, phone } = req.body;
@@ -22,17 +18,14 @@ exports.register = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Name, email, and password are required' });
     }
 
-    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ success: false, message: 'An account with this email already exists' });
     }
 
-    // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create user
     const userRole = role === 'admin' ? 'admin' : 'student';
     const user = await User.create({
       name,
@@ -63,14 +56,10 @@ exports.register = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error('Registration error:', error);
     res.status(500).json({ success: false, message: error.message || 'Server error during registration' });
   }
 };
 
-// @desc    Login user
-// @route   POST /api/auth/login
-// @access  Public
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -107,14 +96,10 @@ exports.login = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error('Login error:', error);
     res.status(500).json({ success: false, message: error.message || 'Server error during login' });
   }
 };
 
-// @desc    Get current logged in user
-// @route   GET /api/auth/me
-// @access  Private
 exports.getMe = async (req, res) => {
   try {
     res.json({
@@ -126,9 +111,6 @@ exports.getMe = async (req, res) => {
   }
 };
 
-// @desc    Get all students (for Admin to select student for payment)
-// @route   GET /api/auth/students
-// @access  Private (Admin)
 exports.getAllStudents = async (req, res) => {
   try {
     const students = await User.find({ role: 'student' })

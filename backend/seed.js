@@ -20,13 +20,11 @@ const seedData = async () => {
     await mongoose.connect(connUri);
     console.log('✅ Connected to MongoDB Atlas for seeding.');
 
-    // Clear existing sample collections
     await User.deleteMany({});
     await FeeStructure.deleteMany({});
     await Payment.deleteMany({});
     console.log('🧹 Cleared existing database records.');
 
-    // 1. Create Admin & Students
     const salt = await bcrypt.genSalt(10);
     const adminPassword = await bcrypt.hash('admin123', salt);
     const namanPassword = await bcrypt.hash('naman123', salt);
@@ -67,8 +65,6 @@ const seedData = async () => {
     console.log('   - Student: naman.roll53@college.edu (Roll 53, pass: naman123)');
     console.log('   - Student: aarav.roll12@college.edu (Roll 12, pass: student123)');
 
-    // 2. Create Fee Structures
-    // Fee Structure 1 (Past due to demonstrate overdue defaulter)
     const pastDueDate = new Date();
     pastDueDate.setDate(pastDueDate.getDate() - 10);
 
@@ -85,7 +81,6 @@ const seedData = async () => {
       description: 'Annual Academic Session Fee 2026-2027 (Overdue for testing)',
     });
 
-    // Fee Structure 2 (Upcoming due date)
     const futureDueDate = new Date();
     futureDueDate.setDate(futureDueDate.getDate() + 30);
 
@@ -104,8 +99,6 @@ const seedData = async () => {
 
     console.log('📚 Created 2 Fee Structures (B.Tech CSE ₹75,000, B.Tech IT ₹85,000)');
 
-    // 3. Create Sample Payments
-    // Payment 1: Naman Goyal pays partial amount (₹40,000 out of ₹75,000 via UPI)
     const payment1 = await Payment.create({
       receiptNo: 'RCP-2026-0001',
       student: student1._id,
@@ -118,7 +111,6 @@ const seedData = async () => {
       recordedBy: admin._id,
     });
 
-    // Payment 2: Naman Goyal pays second partial amount (₹15,000 via Card)
     const payment2 = await Payment.create({
       receiptNo: 'RCP-2026-0002',
       student: student1._id,

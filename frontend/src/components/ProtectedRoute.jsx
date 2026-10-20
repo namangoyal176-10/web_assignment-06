@@ -19,11 +19,9 @@ export const ProtectedRoute = ({ children, allowedRoles }) => {
   }
 
   if (allowedRoles && !allowedRoles.includes(user?.role)) {
-    // If student attempts to access admin route, redirect to their fees page
     if (user?.role === 'student') {
       return <Navigate to="/my-fees" replace />;
     }
-    // If admin attempts to access student-only route, redirect to admin dashboard
     return <Navigate to="/admin/dashboard" replace />;
   }
 

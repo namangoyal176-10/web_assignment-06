@@ -6,16 +6,14 @@ import {
   AlertTriangle,
   CheckCircle2,
   Clock,
-  ExternalLink,
   DollarSign,
   Calendar,
-  CreditCard,
   UserCheck,
   FileCheck,
 } from 'lucide-react';
 
 export const StudentFees = () => {
-  const { id } = useParams(); // For admin view /admin/students/:id/fees
+  const { id } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -63,7 +61,6 @@ export const StudentFees = () => {
 
   return (
     <div className="page-container">
-      {/* Student Profile Overview Banner */}
       <div className="profile-banner">
         <div className="profile-main">
           <div className="profile-avatar">
@@ -87,7 +84,6 @@ export const StudentFees = () => {
         )}
       </div>
 
-      {/* Fee Summary Cards */}
       <div className="stats-grid">
         <div className="stat-card">
           <div className="stat-icon-wrapper bg-blue-subtle">
@@ -122,7 +118,6 @@ export const StudentFees = () => {
         </div>
       </div>
 
-      {/* Fee Structure Breakdown List */}
       <div className="section-block">
         <div className="section-header">
           <h2 className="section-heading">Course Fee Structures</h2>
@@ -166,7 +161,6 @@ export const StudentFees = () => {
                     </span>
                   </div>
 
-                  {/* Fee Heads */}
                   {fee.feeHeads && fee.feeHeads.length > 0 && (
                     <div className="fee-heads-list">
                       {fee.feeHeads.map((head, hIdx) => (
@@ -216,7 +210,6 @@ export const StudentFees = () => {
         )}
       </div>
 
-      {/* Payment History & Receipts */}
       <div className="section-block">
         <div className="section-header">
           <h2 className="section-heading">Payment History & Receipts</h2>

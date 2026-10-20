@@ -8,7 +8,6 @@ import {
   PlusCircle,
   FileText,
   LogOut,
-  User,
   Menu,
   X,
   GraduationCap,
@@ -29,7 +28,6 @@ export const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-container">
-        {/* Brand / Logo */}
         <Link to="/" className="nav-brand" onClick={closeMenu}>
           <div className="brand-icon-wrapper">
             <GraduationCap className="brand-icon" size={24} />
@@ -40,7 +38,6 @@ export const Navbar = () => {
           </div>
         </Link>
 
-        {/* Mobile Toggle Button */}
         <button
           className="mobile-toggle"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -49,7 +46,6 @@ export const Navbar = () => {
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* Desktop & Mobile Menu */}
         <div className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
           {isAuthenticated ? (
             <>
@@ -102,7 +98,6 @@ export const Navbar = () => {
                 </NavLink>
               )}
 
-              {/* User Profile & Logout */}
               <div className="nav-user-section">
                 <div className="user-badge">
                   <div className="avatar-circle">

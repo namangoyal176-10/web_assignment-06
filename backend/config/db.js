@@ -9,10 +9,9 @@ const connectDB = async () => {
     const conn = await mongoose.connect(connUri, {
       serverSelectionTimeoutMS: 5000,
     });
-    console.log(`✅ MongoDB Connected: ${conn.connection.host}/${conn.connection.name}`);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
-    console.error('❌ MongoDB Connection Error:', error.message);
-    // Retry connection after 5 seconds
+    console.error('MongoDB Connection Error:', error.message);
     setTimeout(connectDB, 5000);
   }
 };

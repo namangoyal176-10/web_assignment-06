@@ -62,7 +62,6 @@ export const Dashboard = () => {
 
   return (
     <div className="page-container">
-      {/* Top Header & Actions */}
       <div className="dashboard-header-row">
         <div>
           <h1 className="page-title">Accounts Administration Dashboard</h1>
@@ -78,7 +77,6 @@ export const Dashboard = () => {
         </div>
       </div>
 
-      {/* Primary KPI Stats Cards */}
       <div className="stats-grid">
         <div className="stat-card">
           <div className="stat-icon-wrapper bg-green-subtle">
@@ -131,7 +129,6 @@ export const Dashboard = () => {
         </div>
       </div>
 
-      {/* Payment Modes Grid */}
       <div className="section-block">
         <div className="section-header">
           <h2 className="section-heading">Collections by Payment Mode</h2>
@@ -157,7 +154,6 @@ export const Dashboard = () => {
         </div>
       </div>
 
-      {/* Overdue Defaulters List */}
       <div className="section-block">
         <div className="section-header">
           <div className="header-with-badge">
@@ -224,7 +220,6 @@ export const Dashboard = () => {
         )}
       </div>
 
-      {/* Recent Payments Table */}
       <div className="section-block">
         <div className="section-header">
           <h2 className="section-heading">Recent Fee Transactions</h2>

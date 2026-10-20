@@ -13,11 +13,10 @@ import {
 } from 'lucide-react';
 
 export const Home = () => {
-  const { isAuthenticated, isAdmin, isStudent, user } = useAuth();
+  const { isAuthenticated, isAdmin, isStudent } = useAuth();
 
   return (
     <div className="home-container">
-      {/* Hero Section */}
       <section className="hero-section">
         <div className="assignment-badge">
           <span>Web Dev Assignment 6 • PS3</span>
@@ -59,7 +58,6 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* Feature Highlights Grid */}
       <section className="features-section">
         <div className="features-grid">
           <div className="feature-card">
@@ -104,7 +102,6 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* College Project Submission Card */}
       <section className="submission-card-section">
         <div className="submission-card">
           <div className="sub-left">

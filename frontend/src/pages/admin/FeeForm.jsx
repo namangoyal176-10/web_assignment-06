@@ -26,7 +26,6 @@ export const FeeForm = () => {
     if (isEditing) {
       fetchFeeStructure();
     } else {
-      // Default due date: 30 days from now
       const defaultDate = new Date();
       defaultDate.setDate(defaultDate.getDate() + 30);
       setDueDate(defaultDate.toISOString().split('T')[0]);
@@ -92,7 +91,6 @@ export const FeeForm = () => {
       return;
     }
 
-    // Filter valid heads
     const validHeads = feeHeads
       .filter((h) => h.title.trim() && !isNaN(parseFloat(h.amount)))
       .map((h) => ({
@@ -221,7 +219,6 @@ export const FeeForm = () => {
             </div>
           </div>
 
-          {/* Fee Heads Section */}
           <div className="fee-heads-builder">
             <div className="heads-builder-header">
               <h3 className="section-heading-sm">Fee Heads Breakdown</h3>

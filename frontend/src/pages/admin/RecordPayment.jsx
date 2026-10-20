@@ -31,7 +31,6 @@ export const RecordPayment = () => {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
-  // Load students & fee structures
   useEffect(() => {
     async function loadDropdowns() {
       try {
@@ -61,7 +60,6 @@ export const RecordPayment = () => {
     loadDropdowns();
   }, []);
 
-  // When student or fee changes, calculate current pending balance
   useEffect(() => {
     async function checkStudentBalance() {
       if (!selectedStudent || !selectedFee) return;
@@ -76,12 +74,10 @@ export const RecordPayment = () => {
 
           if (match) {
             setFeeBalanceData(match);
-            // Suggest pending balance in the input if currently empty
             if (!amountPaid || Number(amountPaid) > match.balance) {
               setAmountPaid(String(match.balance));
             }
           } else {
-            // Find fee structure directly
             const feeObj = feeStructures.find((f) => f._id === selectedFee);
             if (feeObj) {
               setFeeBalanceData({
@@ -135,7 +131,6 @@ export const RecordPayment = () => {
       });
 
       if (res.success && res.receiptNo) {
-        // Navigate immediately to view and print receipt
         navigate(`/receipts/${res.receiptNo}`);
       }
     } catch (err) {
@@ -166,7 +161,6 @@ export const RecordPayment = () => {
         )}
 
         <form onSubmit={handleSubmit}>
-          {/* Student & Fee Selection */}
           <div className="form-row">
             <div className="form-group">
               <label className="form-label" htmlFor="student-select">Select Student</label>
@@ -209,7 +203,6 @@ export const RecordPayment = () => {
             </div>
           </div>
 
-          {/* Pending Balance Indicator Box */}
           {feeBalanceData && (
             <div className="balance-indicator-box">
               <div className="balance-stat">
@@ -233,7 +226,6 @@ export const RecordPayment = () => {
             </div>
           )}
 
-          {/* Amount and Payment Mode */}
           <div className="form-row">
             <div className="form-group">
               <label className="form-label" htmlFor="payment-amount">

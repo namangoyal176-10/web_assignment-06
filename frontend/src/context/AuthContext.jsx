@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(() => localStorage.getItem('fee_token') || null);
   const [loading, setLoading] = useState(true);
 
-  // Sync / verify user session on first mount
   useEffect(() => {
     async function verifySession() {
       if (!token) {
@@ -26,7 +25,6 @@ export const AuthProvider = ({ children }) => {
           localStorage.setItem('fee_user', JSON.stringify(res.user));
         }
       } catch (err) {
-        console.warn('Session verification failed, logging out:', err.message);
         logout();
       } finally {
         setLoading(false);

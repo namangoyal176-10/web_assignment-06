@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-// Middleware to verify JWT token and protect routes
 const protect = async (req, res, next) => {
   let token;
 
@@ -16,7 +15,6 @@ const protect = async (req, res, next) => {
         process.env.JWT_SECRET || 'fee_secret_key_naman53'
       );
 
-      // Attach user object to request
       const user = await User.findById(decoded.id).select('-password');
       if (!user) {
         return res.status(401).json({ success: false, message: 'User no longer exists' });
@@ -34,7 +32,6 @@ const protect = async (req, res, next) => {
   }
 };
 
-// Middleware to check user role (e.g., 'admin', 'student')
 const authorize = (...roles) => {
   return (req, res, next) => {
     if (!req.user || !roles.includes(req.user.role)) {

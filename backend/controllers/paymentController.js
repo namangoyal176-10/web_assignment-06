@@ -2,12 +2,10 @@ const Payment = require('../models/Payment');
 const FeeStructure = require('../models/FeeStructure');
 const User = require('../models/User');
 
-// Helper to generate sequential receipt number like RCP-2026-0001
 const generateReceiptNumber = async () => {
   const currentYear = new Date().getFullYear();
   const prefix = `RCP-${currentYear}-`;
   
-  // Find latest payment created this year
   const latestPayment = await Payment.findOne({
     receiptNo: { $regex: `^${prefix}` },
   }).sort({ createdAt: -1 });
@@ -24,9 +22,6 @@ const generateReceiptNumber = async () => {
   return `${prefix}${String(nextSequence).padStart(4, '0')}`;
 };
 
-// @desc    Record a new payment for a student
-// @route   POST /api/payments
-// @access  Private (Admin only)
 exports.recordPayment = async (req, res) => {
   try {
     const {
@@ -41,7 +36,6 @@ exports.recordPayment = async (req, res) => {
 
     const amount = Number(amountPaid);
 
-    // Rule: Reject zero or negative payments
     if (!amount || amount <= 0) {
       return res.status(400).json({
         success: false,
@@ -49,7 +43,6 @@ exports.recordPayment = async (req, res) => {
       });
     }
 
-    // Verify student exists
     const student = await User.findById(studentId);
     if (!student || student.role !== 'student') {
       return res.status(404).json({
@@ -58,7 +51,6 @@ exports.recordPayment = async (req, res) => {
       });
     }
 
-    // Verify fee structure exists
     const feeStructure = await FeeStructure.findById(feeStructureId);
     if (!feeStructure) {
       return res.status(404).json({
@@ -67,7 +59,6 @@ exports.recordPayment = async (req, res) => {
       });
     }
 
-    // Calculate existing payments for this student & fee structure
     const previousPayments = await Payment.find({
       student: studentId,
       feeStructure: feeStructureId,
@@ -80,7 +71,6 @@ exports.recordPayment = async (req, res) => {
 
     const pendingAmount = feeStructure.totalAmount - alreadyPaid;
 
-    // Rule: Reject payment greater than pending amount
     if (amount > pendingAmount) {
       return res.status(400).json({
         success: false,
@@ -88,7 +78,6 @@ exports.recordPayment = async (req, res) => {
       });
     }
 
-    // Generate unique receipt number
     const receiptNo = await generateReceiptNumber();
 
     const payment = await Payment.create({
@@ -115,7 +104,6 @@ exports.recordPayment = async (req, res) => {
       data: populatedPayment,
     });
   } catch (error) {
-    console.error('Error recording payment:', error);
     res.status(500).json({
       success: false,
       message: error.message || 'Server error while recording payment',
@@ -123,9 +111,6 @@ exports.recordPayment = async (req, res) => {
   }
 };
 
-// @desc    Get single receipt by receipt number
-// @route   GET /api/payments/receipt/:receiptNo
-// @access  Private (Student sees own, Admin sees any)
 exports.getReceiptByNumber = async (req, res) => {
   try {
     const { receiptNo } = req.params;
@@ -142,7 +127,6 @@ exports.getReceiptByNumber = async (req, res) => {
       });
     }
 
-    // Authorization rule: student can only view their own receipt
     if (
       req.user.role === 'student' &&
       payment.student._id.toString() !== req.user._id.toString()
@@ -165,21 +149,16 @@ exports.getReceiptByNumber = async (req, res) => {
   }
 };
 
-// @desc    Get fee summary and history for a student
-// @route   GET /api/payments/my-fees (for logged-in student) OR /api/payments/student/:studentId (for admin)
-// @access  Private
 exports.getStudentFees = async (req, res) => {
   try {
     let studentId;
 
     if (req.params.studentId) {
-      // Admin looking up specific student
       if (req.user.role !== 'admin') {
         return res.status(403).json({ success: false, message: 'Admin access required' });
       }
       studentId = req.params.studentId;
     } else {
-      // Student viewing their own fees
       studentId = req.user._id;
     }
 
@@ -188,15 +167,12 @@ exports.getStudentFees = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Student not found' });
     }
 
-    // Find all fee structures (matching student course or all available)
     const feeStructures = await FeeStructure.find().sort({ dueDate: 1 });
 
-    // Find all payments made by this student
     const studentPayments = await Payment.find({ student: studentId })
       .populate('feeStructure', 'course academicYear totalAmount')
       .sort({ paymentDate: -1 });
 
-    // Build breakdown for each fee structure
     const breakdown = feeStructures.map((structure) => {
       const paymentsForThisFee = studentPayments.filter(
         (p) => p.feeStructure && p.feeStructure._id.toString() === structure._id.toString()
@@ -244,14 +220,10 @@ exports.getStudentFees = async (req, res) => {
       paymentHistory: studentPayments,
     });
   } catch (error) {
-    console.error('Error in getStudentFees:', error);
     res.status(500).json({ success: false, message: 'Failed to fetch student fee details' });
   }
 };
 
-// @desc    Admin dashboard analytics
-// @route   GET /api/payments/dashboard
-// @access  Private (Admin only)
 exports.getDashboardStats = async (req, res) => {
   try {
     const allPayments = await Payment.find()
@@ -262,13 +234,11 @@ exports.getDashboardStats = async (req, res) => {
     const allStudents = await User.find({ role: 'student' }).select('-password');
     const allFeeStructures = await FeeStructure.find();
 
-    // 1. Total fees collected
     const totalCollected = allPayments.reduce(
       (sum, p) => sum + (Number(p.amountPaid) || 0),
       0
     );
 
-    // 2. Collection grouped by payment mode
     const modeBreakdown = {
       UPI: 0,
       Cash: 0,
@@ -281,8 +251,6 @@ exports.getDashboardStats = async (req, res) => {
       modeBreakdown[mode] = (modeBreakdown[mode] || 0) + (Number(p.amountPaid) || 0);
     });
 
-    // 3. Expected fees & overdue defaulters calculation
-    // Calculate fee balance for each student
     let totalExpectedAll = 0;
     const defaultersList = [];
 
@@ -303,7 +271,6 @@ exports.getDashboardStats = async (req, res) => {
         0
       );
 
-      // Check each fee structure for overdue status
       allFeeStructures.forEach((fee) => {
         const paidThisFee = studPayments
           .filter((p) => p.feeStructure && p.feeStructure._id.toString() === fee._id.toString())
@@ -346,7 +313,6 @@ exports.getDashboardStats = async (req, res) => {
       recentPayments: allPayments.slice(0, 10),
     });
   } catch (error) {
-    console.error('Error fetching dashboard stats:', error);
     res.status(500).json({ success: false, message: 'Failed to load dashboard data' });
   }
 };
