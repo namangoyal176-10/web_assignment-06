@@ -1,9 +1,5 @@
 # FeeFlow — Fee Collection & Receipt Management System
 
-**Assignment:** Web Development Assignment 6 — Problem Statement 3 (PS3)  
-**Student Name:** Naman Goyal  
-**Roll Number:** 53  
-**Repository:** [https://github.com/namangoyal176-10/web_assignment-06](https://github.com/namangoyal176-10/web_assignment-06)  
 **Frontend Deployment:** Vercel  
 **Backend Deployment:** Render  
 **Database:** MongoDB Atlas  
@@ -141,7 +137,7 @@ Configure `backend/.env` with your values:
 ```env
 PORT=5000
 MONGO_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/fee_management?retryWrites=true&w=majority
-JWT_SECRET=your_super_secret_jwt_key_naman53
+JWT_SECRET=your_super_secret_jwt_key_2026
 FRONTEND_URL=http://localhost:5173
 NODE_ENV=development
 ```
@@ -191,8 +187,8 @@ If you ran `npm run seed`, you can instantly sign in using:
 | Role | Email | Password | Details |
 |---|---|---|---|
 | **Accountant / Admin** | `admin@college.edu` | `admin123` | Full administrative & payment collection access |
-| **Student (Roll 53)** | `naman.roll53@college.edu` | `naman123` | Naman Goyal • B.Tech Computer Science |
-| **Student (Roll 12)** | `aarav.roll12@college.edu` | `student123` | Aarav Sharma (Overdue Defaulter) |
+| **Student** | `student@college.edu` | `student123` | Rahul Sharma • B.Tech Computer Science |
+| **Student (Defaulter)** | `aarav.verma@college.edu` | `student123` | Aarav Verma (Overdue Defaulter) |
 
 ---
 
@@ -229,7 +225,7 @@ If you ran `npm run seed`, you can instantly sign in using:
 
 1. Log in to your [Render Dashboard](https://dashboard.render.com/).
 2. Click **New +** → **Web Service**.
-3. Connect your GitHub repository: `namangoyal176-10/web_assignment-06`.
+3. Connect your GitHub repository: `your-username/fee-collection-system`.
 4. Configure the Web Service settings:
    - **Name:** `fee-collection-api` (or your preferred name)
    - **Region:** Singapore / Oregon / Frankfurt
@@ -254,7 +250,7 @@ If you ran `npm run seed`, you can instantly sign in using:
 
 1. Log in to your [Vercel Dashboard](https://vercel.com/).
 2. Click **Add New...** → **Project**.
-3. Import repository: `namangoyal176-10/web_assignment-06`.
+3. Import repository: `your-username/fee-collection-system`.
 4. Configure the project:
    - **Framework Preset:** `Vite`
    - **Root Directory:** Click "Edit" and choose `frontend` *(CRITICAL)*
@@ -269,11 +265,8 @@ If you ran `npm run seed`, you can instantly sign in using:
 
 ---
 
-## 👨‍🎓 Author & Academic Integrity
+## 🏛️ System Information
 
-- **Student:** Naman Goyal
-- **Roll Number:** 53
-- **Course:** B.Tech Computer Science & Engineering
-- **Institution:** Apex Institute of Engineering & Technology / Mirai School of Technology
-- **Problem Statement:** PS3 — Fee Collection & Receipt Management System
-- All application code and architecture designed according to official course standards.
+- **Application:** FeeFlow Campus Fee Management System
+- **Module:** Institutional Tuition Billing & Digital Receipt Clearance
+- **Architecture:** MERN Full-Stack with Role-Based Access Control (Admin / Student)

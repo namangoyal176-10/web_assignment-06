@@ -175,7 +175,7 @@ export const RecordPayment = () => {
                 >
                   {students.map((stud) => (
                     <option key={stud._id} value={stud._id}>
-                      {stud.name} (Roll: {stud.rollNumber || '53'}) - {stud.course}
+                      {stud.name} (Roll: {stud.rollNumber || 'N/A'}) - {stud.course}
                     </option>
                   ))}
                 </select>

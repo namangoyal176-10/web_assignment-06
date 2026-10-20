@@ -34,7 +34,7 @@ export const Navbar = () => {
           </div>
           <div className="brand-text">
             <span className="brand-title">FeeFlow</span>
-            <span className="brand-subtitle">Roll 53 • Naman Goyal</span>
+            <span className="brand-subtitle">Student Accounts Portal</span>
           </div>
         </Link>
 
@@ -106,7 +106,7 @@ export const Navbar = () => {
                   <div className="user-details">
                     <span className="user-name">{user?.name}</span>
                     <span className={`user-role-tag ${user?.role}`}>
-                      {user?.role === 'admin' ? 'Accountant / Admin' : `Student (Roll ${user?.rollNumber || '53'})`}
+                      {user?.role === 'admin' ? 'Accountant / Admin' : `Student (${user?.rollNumber || 'CS-101'})`}
                     </span>
                   </div>
                 </div>

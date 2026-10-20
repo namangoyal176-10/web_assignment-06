@@ -251,7 +251,7 @@ export const Dashboard = () => {
                   <tr key={p._id}>
                     <td><span className="tag-mono font-bold">{p.receiptNo}</span></td>
                     <td>{p.student?.name || 'N/A'}</td>
-                    <td><span className="tag-mono">{p.student?.rollNumber || '53'}</span></td>
+                    <td><span className="tag-mono">{p.student?.rollNumber || 'N/A'}</span></td>
                     <td>
                       {new Date(p.paymentDate).toLocaleDateString('en-IN', {
                         day: '2-digit',

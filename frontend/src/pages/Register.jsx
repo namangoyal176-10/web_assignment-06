@@ -80,7 +80,7 @@ export const Register = () => {
                   name="name"
                   required
                   className="form-input"
-                  placeholder="e.g. Naman Goyal"
+                  placeholder="e.g. Rahul Sharma"
                   value={formData.name}
                   onChange={handleChange}
                 />
@@ -97,7 +97,7 @@ export const Register = () => {
                   name="email"
                   required
                   className="form-input"
-                  placeholder="naman@college.edu"
+                  placeholder="student@college.edu"
                   value={formData.email}
                   onChange={handleChange}
                 />
@@ -150,7 +150,7 @@ export const Register = () => {
                     name="rollNumber"
                     required
                     className="form-input"
-                    placeholder="e.g. 53"
+                    placeholder="e.g. CS-101"
                     value={formData.rollNumber}
                     onChange={handleChange}
                   />

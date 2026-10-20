@@ -12,7 +12,7 @@ const protect = async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1];
       const decoded = jwt.verify(
         token,
-        process.env.JWT_SECRET || 'fee_secret_key_naman53'
+        process.env.JWT_SECRET || 'feeflow_jwt_secret_token_2026'
       );
 
       const user = await User.findById(decoded.id).select('-password');

@@ -101,10 +101,10 @@ function App() {
         <footer className="footer no-print">
           <div className="footer-content">
             <p>
-              <strong>FeeFlow System</strong> • PS3: Fee Collection & Receipt Management System
+              <strong>FeeFlow</strong> • Campus Fee Collection & Receipt Management System
             </p>
             <p className="footer-sub">
-              Developed by <strong>Naman Goyal</strong> (Roll No: 53) • B.Tech Web Development Assignment 6
+              Institutional Student Billing & Online Payment Records
             </p>
           </div>
         </footer>

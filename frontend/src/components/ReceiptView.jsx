@@ -47,7 +47,7 @@ export const ReceiptView = ({ payment }) => {
           <div className="institution-info">
             <h1 className="inst-title">APEX INSTITUTE OF ENGINEERING & TECHNOLOGY</h1>
             <p className="inst-sub">Office of the Accounts & Fee Administration</p>
-            <p className="inst-meta">Affiliated to State Technical University • Campus Code: 053</p>
+            <p className="inst-meta">Affiliated to State Technical University • Campus Code: 101</p>
           </div>
           <div className="receipt-badge-box">
             <span className="receipt-badge-title">OFFICIAL FEE RECEIPT</span>
@@ -72,7 +72,7 @@ export const ReceiptView = ({ payment }) => {
                 </tr>
                 <tr>
                   <th>Roll Number:</th>
-                  <td><span className="tag-mono">{student?.rollNumber || '53'}</span></td>
+                  <td><span className="tag-mono">{student?.rollNumber || 'N/A'}</span></td>
                 </tr>
                 <tr>
                   <th>Course / Branch:</th>
@@ -181,7 +181,7 @@ export const ReceiptView = ({ payment }) => {
         <div className="receipt-footer">
           <div className="footer-left">
             <p className="notice-text">
-              * This is a computer-generated fee receipt under PS3 Fee Management System (Naman Goyal, Roll 53).
+              * This is an official computer-generated fee receipt and does not require a physical signature.
             </p>
             <p className="notice-sub">Keep this receipt safe for admission and examination clearance.</p>
           </div>

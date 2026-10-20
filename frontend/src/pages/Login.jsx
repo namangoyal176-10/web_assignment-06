@@ -36,8 +36,8 @@ export const Login = () => {
       setEmail('admin@college.edu');
       setPassword('admin123');
     } else {
-      setEmail('naman.roll53@college.edu');
-      setPassword('naman123');
+      setEmail('student@college.edu');
+      setPassword('student123');
     }
   };
 
@@ -112,7 +112,7 @@ export const Login = () => {
               className="chip-btn"
               onClick={() => fillCredentials('student')}
             >
-              Fill Student (Roll 53)
+              Fill Student Demo
             </button>
             <button
               type="button"

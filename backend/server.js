@@ -71,7 +71,7 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'ok',
     service: 'fee-collection-system-api',
-    developer: 'Naman Goyal (Roll No: 53)',
+    version: '1.0.0',
     timestamp: new Date().toISOString(),
     uptimeSeconds: Math.floor(process.uptime()),
     database: dbStatus,

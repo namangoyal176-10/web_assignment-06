@@ -27,8 +27,7 @@ const seedData = async () => {
 
     const salt = await bcrypt.genSalt(10);
     const adminPassword = await bcrypt.hash('admin123', salt);
-    const namanPassword = await bcrypt.hash('naman123', salt);
-    const aaravPassword = await bcrypt.hash('student123', salt);
+    const studentPassword = await bcrypt.hash('student123', salt);
 
     const admin = await User.create({
       name: 'Prof. Rajesh Sharma (Accountant)',
@@ -39,22 +38,22 @@ const seedData = async () => {
     });
 
     const student1 = await User.create({
-      name: 'Naman Goyal',
-      email: 'naman.roll53@college.edu',
-      password: namanPassword,
+      name: 'Rahul Sharma',
+      email: 'student@college.edu',
+      password: studentPassword,
       role: 'student',
-      rollNumber: '53',
+      rollNumber: 'CS-101',
       course: 'B.Tech Computer Science',
       batch: '2024-2028',
       phone: '9812345678',
     });
 
     const student2 = await User.create({
-      name: 'Aarav Sharma',
-      email: 'aarav.roll12@college.edu',
-      password: aaravPassword,
+      name: 'Aarav Verma',
+      email: 'aarav.verma@college.edu',
+      password: studentPassword,
       role: 'student',
-      rollNumber: '12',
+      rollNumber: 'CS-102',
       course: 'B.Tech Computer Science',
       batch: '2024-2028',
       phone: '9823456789',
@@ -62,8 +61,8 @@ const seedData = async () => {
 
     console.log('👥 Created Users:');
     console.log('   - Admin: admin@college.edu (pass: admin123)');
-    console.log('   - Student: naman.roll53@college.edu (Roll 53, pass: naman123)');
-    console.log('   - Student: aarav.roll12@college.edu (Roll 12, pass: student123)');
+    console.log('   - Student: student@college.edu (Roll CS-101, pass: student123)');
+    console.log('   - Student: aarav.verma@college.edu (Roll CS-102, pass: student123)');
 
     const pastDueDate = new Date();
     pastDueDate.setDate(pastDueDate.getDate() - 10);
@@ -124,9 +123,9 @@ const seedData = async () => {
     });
 
     console.log('💳 Created Sample Payments:');
-    console.log(`   - ${payment1.receiptNo}: ₹40,000 (UPI) for Naman Goyal`);
-    console.log(`   - ${payment2.receiptNo}: ₹15,000 (Card) for Naman Goyal`);
-    console.log('   - Outstanding for Naman: ₹20,000 (Overdue)');
+    console.log(`   - ${payment1.receiptNo}: ₹40,000 (UPI) for Rahul Sharma`);
+    console.log(`   - ${payment2.receiptNo}: ₹15,000 (Card) for Rahul Sharma`);
+    console.log('   - Outstanding for Rahul: ₹20,000 (Overdue)');
     console.log('   - Outstanding for Aarav: ₹75,000 (Overdue Defaulter)');
 
     console.log('\n🎉 Database Seeded Successfully!');

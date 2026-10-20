@@ -69,7 +69,7 @@ export const StudentFees = () => {
           <div className="profile-text">
             <div className="profile-title-row">
               <h1 className="profile-name">{student?.name}</h1>
-              <span className="badge badge-primary">Roll No: {student?.rollNumber || '53'}</span>
+              <span className="badge badge-primary">Roll No: {student?.rollNumber || 'N/A'}</span>
             </div>
             <p className="profile-meta">
               <span>{student?.course}</span> • <span>Batch: {student?.batch || '2024-2028'}</span> • <span>{student?.email}</span>

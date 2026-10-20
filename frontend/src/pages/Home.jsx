@@ -18,10 +18,10 @@ export const Home = () => {
   return (
     <div className="home-container">
       <section className="hero-section">
-        <div className="assignment-badge">
-          <span>Web Dev Assignment 6 • PS3</span>
+        <div className="hero-badge">
+          <span>Campus Fee Management Portal</span>
           <span className="dot-sep">•</span>
-          <span>Naman Goyal (Roll No: 53)</span>
+          <span>Accounts & Student Billing</span>
         </div>
 
         <h1 className="hero-title">
@@ -30,8 +30,7 @@ export const Home = () => {
         </h1>
 
         <p className="hero-description">
-          A full-stack MERN application for institutional tuition management, role-based
-          fee structures, multi-mode payment recording, automated receipt generation, and real-time defaulters tracking.
+          An institutional portal for student tuition billing, multi-mode fee collection, instant digital receipts, and real-time account balances.
         </p>
 
         <div className="hero-cta-group">
@@ -105,16 +104,16 @@ export const Home = () => {
       <section className="submission-card-section">
         <div className="submission-card">
           <div className="sub-left">
-            <h3>College Evaluation Ready</h3>
+            <h3>Institutional Fee Management System</h3>
             <p>
-              Developed by <strong>Naman Goyal</strong> (Roll: 53) using React, Vite, Node.js, Express, and MongoDB Atlas.
+              Secure, digital fee collection and automated receipt generation for students and campus administration.
             </p>
           </div>
           <div className="sub-right">
-            <span className="tech-chip">React + Vite</span>
-            <span className="tech-chip">Node.js + Express</span>
-            <span className="tech-chip">MongoDB Atlas</span>
-            <span className="tech-chip">Vercel & Render</span>
+            <span className="tech-chip">Online Receipts</span>
+            <span className="tech-chip">Instant Verification</span>
+            <span className="tech-chip">UPI / Cards / Cash</span>
+            <span className="tech-chip">Accounts Portal</span>
           </div>
         </div>
       </section>

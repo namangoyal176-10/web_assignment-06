@@ -5,7 +5,7 @@ const User = require('../models/User');
 const generateToken = (id, role) => {
   return jwt.sign(
     { id, role },
-    process.env.JWT_SECRET || 'fee_secret_key_naman53',
+    process.env.JWT_SECRET || 'feeflow_jwt_secret_token_2026',
     { expiresIn: '7d' }
   );
 };
@@ -32,7 +32,7 @@ exports.register = async (req, res) => {
       email,
       password: hashedPassword,
       role: userRole,
-      rollNumber: rollNumber || (userRole === 'student' ? '53' : undefined),
+      rollNumber: rollNumber || (userRole === 'student' ? 'CS-101' : undefined),
       course: course || 'B.Tech CSE',
       batch: batch || '2024-2028',
       phone: phone || '',
